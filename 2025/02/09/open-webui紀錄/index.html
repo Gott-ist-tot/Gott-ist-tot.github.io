@@ -19,24 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"gott-ist-tot.github.io.git","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="行動發生於思考之前">
-<meta property="og:type" content="website">
+    <meta name="description" content="Open WebUI 與 Docker 部署及進階功能解析本文詳細介紹了 Open WebUI 的核心功能、進階擴展機制（包括工具、函數與流水線）以及如何利用 Docker 快速部署與啟動 Open WebUI。透過本篇文章，你可以構建一個功能豐富且易於管理的本地大模型平台，並探索與各種大型語言模型 (LLM) 互動的多種方式。  目錄 Open WebUI 與 Docker 部署及進階功能解析">
+<meta property="og:type" content="article">
 <meta property="og:title" content="學習隨筆">
-<meta property="og:url" content="http://gott-ist-tot.github.io.git/index.html">
+<meta property="og:url" content="http://gott-ist-tot.github.io.git/2025/02/09/open-webui%E7%B4%80%E9%8C%84/index.html">
 <meta property="og:site_name" content="學習隨筆">
-<meta property="og:description" content="行動發生於思考之前">
+<meta property="og:description" content="Open WebUI 與 Docker 部署及進階功能解析本文詳細介紹了 Open WebUI 的核心功能、進階擴展機制（包括工具、函數與流水線）以及如何利用 Docker 快速部署與啟動 Open WebUI。透過本篇文章，你可以構建一個功能豐富且易於管理的本地大模型平台，並探索與各種大型語言模型 (LLM) 互動的多種方式。  目錄 Open WebUI 與 Docker 部署及進階功能解析">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-02-09T13:41:06.509Z">
+<meta property="article:modified_time" content="2025-02-09T14:17:23.352Z">
 <meta property="article:author" content="Henry Kuo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://gott-ist-tot.github.io.git/">
+<link rel="canonical" href="http://gott-ist-tot.github.io.git/2025/02/09/open-webui%E7%B4%80%E9%8C%84/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-tw","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-tw","comments":true,"permalink":"http://gott-ist-tot.github.io.git/2025/02/09/open-webui%E7%B4%80%E9%8C%84/","path":"2025/02/09/open-webui紀錄/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>學習隨筆</title>
+<title> | 學習隨筆</title>
   
 
 
@@ -66,7 +68,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">學習隨筆</h1>
+      <p class="site-title">學習隨筆</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -88,7 +90,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -101,6 +103,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Open-WebUI-%E8%88%87-Docker-%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">Open WebUI 與 Docker 部署及進階功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84"><span class="nav-number">1.1.</span> <span class="nav-text">目錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%B0%A1%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">一、簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Open-WebUI-%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">二、Open WebUI 的基礎功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%8A%E5%82%B3%E6%96%87%E4%BB%B6%E8%88%87-RAG-%E7%B3%BB%E7%B5%B1"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 上傳文件與 RAG 系統</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%AA%9E%E9%9F%B3%E8%88%87%E6%96%87%E5%AD%97%E6%BA%9D%E9%80%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 語音與文字溝通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Web-%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 Web 搜索功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%80%B2%E9%9A%8E-Hook-%E6%A9%9F%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">三、進階 Hook 機制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Tool%EF%BC%88%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 Tool（工具）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Function%EF%BC%88%E5%87%BD%E6%95%B8%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 Function（函數）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Pipeline%EF%BC%88%E6%B5%81%E6%B0%B4%E7%B7%9A%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 Pipeline（流水線）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%A9%E7%94%A8-Docker-%E5%AE%89%E8%A3%9D%E8%88%87%E9%83%A8%E7%BD%B2-Open-WebUI"><span class="nav-number">1.5.</span> <span class="nav-text">四、利用 Docker 安裝與部署 Open WebUI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%89%8D%E7%BD%AE%E6%BA%96%E5%82%99"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 前置準備</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%8B%89%E5%8F%96-Docker-%E6%98%A0%E5%83%8F"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 拉取 Docker 映像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%95%9F%E5%8B%95%E5%AE%B9%E5%99%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 啟動容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-GPU-%E6%94%AF%E6%8F%B4%EF%BC%88%E9%81%B8%E7%94%A8%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">4.4 GPU 支援（選用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E9%A9%97%E8%AD%89%E8%88%87%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.5.</span> <span class="nav-text">4.5 驗證與使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E5%BC%95%E5%85%A5pipeline"><span class="nav-number">1.5.6.</span> <span class="nav-text">4.6 引入pipeline</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%8A%9F%E8%83%BD%E6%8E%A2%E7%B4%A2%E8%88%87%E9%80%B2%E9%9A%8E%E6%87%89%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">五、功能探索與進階應用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B8%BD%E7%B5%90"><span class="nav-number">1.7.</span> <span class="nav-text">六、總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">1.8.</span> <span class="nav-text">參考資料</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -130,16 +133,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="http://gott-ist-tot.github.io.git/2025/02/09/open-webui%E7%B4%80%E9%8C%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -153,13 +157,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 學習隨筆">
+      <meta itemprop="name" content=" | 學習隨筆">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/09/open-webui%E7%B4%80%E9%8C%84/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -182,8 +186,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Open-WebUI-與-Docker-部署及進階功能解析"><a href="#Open-WebUI-與-Docker-部署及進階功能解析" class="headerlink" title="Open WebUI 與 Docker 部署及進階功能解析"></a>Open WebUI 與 Docker 部署及進階功能解析</h1><p>本文詳細介紹了 Open WebUI 的核心功能、進階擴展機制（包括工具、函數與流水線）以及如何利用 Docker 快速部署與啟動 Open WebUI。透過本篇文章，你可以構建一個功能豐富且易於管理的本地大模型平台，並探索與各種大型語言模型 (LLM) 互動的多種方式。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="Open-WebUI-與-Docker-部署及進階功能解析"><a href="#Open-WebUI-與-Docker-部署及進階功能解析" class="headerlink" title="Open WebUI 與 Docker 部署及進階功能解析"></a>Open WebUI 與 Docker 部署及進階功能解析</h1><p>本文詳細介紹了 Open WebUI 的核心功能、進階擴展機制（包括工具、函數與流水線）以及如何利用 Docker 快速部署與啟動 Open WebUI。透過本篇文章，你可以構建一個功能豐富且易於管理的本地大模型平台，並探索與各種大型語言模型 (LLM) 互動的多種方式。</p>
 <hr>
 <h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ul>
 <li><a href="#open-webui-%E8%88%87-docker-%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90">Open WebUI 與 Docker 部署及進階功能解析</a><ul>
@@ -275,7 +278,6 @@
 <li>[Open WebUI 相關博客與技術文章]</li>
 </ul>
 
-      
     </div>
 
     
@@ -283,163 +285,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/09/hello-hexo/" rel="prev" title="hello_hexo">
+                  <i class="fa fa-angle-left"></i> hello_hexo
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://gott-ist-tot.github.io.git/2025/02/09/hello-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Henry Kuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="學習隨筆">
-      <meta itemprop="description" content="行動發生於思考之前">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 學習隨筆">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/09/hello-hexo/" class="post-title-link" itemprop="url">hello_hexo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-02-09 00:32:10 / Modified: 00:39:36" itemprop="dateCreated datePublished" datetime="2025-02-09T00:32:10+08:00">2025-02-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>記錄一下hexo git deploy 的坑<br>需要額外npm module 來部署在git上</p>
-<p>如以下command<br>‘’’<br>npm install hexo-deployer-git –save<br>‘’’</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://gott-ist-tot.github.io.git/2025/02/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Henry Kuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="學習隨筆">
-      <meta itemprop="description" content="行動發生於思考之前">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 學習隨筆">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/09/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-02-09 00:31:25" itemprop="dateCreated datePublished" datetime="2025-02-09T00:31:25+08:00">2025-02-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
