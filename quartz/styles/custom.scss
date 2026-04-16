@@ -1,3 +1,158 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// === The Late-Night Desk ===
+// Warm, crafted, precise. Like a well-lit workbench at midnight.
+
+// Subtle grain texture on the background
+body {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+// Refined article typography
+.center {
+  article {
+    // Generous line height for essay reading
+    p {
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.4em;
+    }
+
+    // First paragraph: subtle lead-in
+    > p:first-of-type {
+      font-size: 1.08em;
+      color: var(--dark);
+    }
+
+    // Horizontal rules as elegant scene breaks
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--gray) 30%,
+        var(--gray) 70%,
+        transparent 100%
+      );
+      margin: 2.8em auto;
+      max-width: 200px;
+      opacity: 0.5;
+    }
+
+    // Bold text with accent warmth
+    strong {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    // Italics with subtle styling
+    em {
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    // Blockquotes as pull quotes
+    blockquote {
+      border-left: 2px solid var(--secondary);
+      padding-left: 1.5em;
+      margin: 2em 0;
+      font-style: italic;
+      opacity: 0.9;
+    }
+  }
+}
+
+// Page title (Henry Kuo in sidebar) — warm accent on hover
+.page-title {
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--secondary) !important;
+  }
+}
+
+// Article title — refined
+article > h1,
+.article-title {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.3em;
+}
+
+// Content meta (date, reading time) — quieter
+.content-meta {
+  opacity: 0.6;
+  font-size: 0.88em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+// Tag pills — refined
+.tag-container {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--lightgray);
+}
+
+// Explorer items — subtle hover
+.explorer ul li a {
+  transition: color 0.2s ease, padding-left 0.2s ease;
+
+  &:hover {
+    color: var(--secondary);
+    padding-left: 4px;
+  }
+}
+
+// Footer — quieter
+footer {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Smooth page transitions
+article {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scrollbar styling (webkit)
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lightgray);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--gray);
+  }
+}
+
+// Selection color
+::selection {
+  background: var(--secondary);
+  color: var(--light);
+}
