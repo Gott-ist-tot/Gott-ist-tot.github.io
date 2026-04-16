@@ -30,6 +30,8 @@ The thought that I'd nearly sent the wrong root cause to the designer turned the
 
 If the story ended here, the conclusion would be simple — AI is replacing me, just like Oracle laid off twenty thousand people last week. But something that happened last month stopped me from thinking that way entirely.
 
+---
+
 I'd just taken over verification for a new block. My manager told me: "Get all coverage to 100%." My mind went blank. There was a complex predictor inside this block — how was I supposed to hit 100%? While my brain was still buffering, I drifted over to the company's AI tool and asked: if you needed to hit the overflow condition on this predictor, how would you do it?
 
 I watched the terminal blink as lines of text streamed out, and the only thought in my head was *wow*. A test pattern I hadn't even begun to formulate — it had already built one. And it actually matched the microarchitecture. I understood what it did. But did I have the same idea myself? "No." My brain was very sure about that.
@@ -40,12 +42,14 @@ Thirty minutes earlier, this same AI had called a bench issue an RTL bug. I didn
 
 I can't do what the AI does. The AI can't do what I do. How can both of these be true at the same time?
 
+---
+
 I thought about it for a long time. The closest I got was this: the AI exhausts every possible path within known rules. On that predictor problem, its search space was vastly larger than what my brain could cover. But exhaustive search requires the rules to be complete. That morning's bench issue? The rules weren't complete — the spec didn't clearly define what was legal under that boundary condition. The AI had nothing to search over, so it guessed wrong. And I smelled that something was off.
 
 That ability to smell when something is off — some people call it judgment, some call it taste. Whatever you call it, it's something that grew out of pulling thousands of waveforms over thousands of hours.
 
 The problem is, I haven't pulled waveforms myself in six months.
 
-The capacity for exhaustive search grows with data. Taste atrophies without practice. These two curves will cross someday.
+**The capacity for exhaustive search grows with data. Taste atrophies without practice.** These two curves will cross someday.
 
 I took another sip of coffee. This time I could taste it — bitter.

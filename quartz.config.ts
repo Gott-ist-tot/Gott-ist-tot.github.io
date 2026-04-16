@@ -8,12 +8,12 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "學習隨筆",
-    pageTitleSuffix: " | Henry Kuo",
+    pageTitle: "Henry Kuo",
+    pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
-    locale: "zh-TW",
+    locale: "en-US",
     baseUrl: "gott-ist-tot.github.io",
     ignorePatterns: ["private", "templates", ".obsidian", "_*"],
     defaultDateType: "modified",
