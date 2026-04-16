@@ -1,4 +1,5 @@
 ---
+draft: true
 title: open-webui紀錄
 date: 2025-02-09 21:41:06
 tags:

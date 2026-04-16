@@ -2,6 +2,11 @@
 # 本地開發：同步內容 + 啟動 dev server
 set -e
 
+# 確保用正確的 Node 版本
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm use 22 --silent
+
 BLOG_SOURCE="$HOME/tui/Obsidian/04_BLOG"
 CONTENT_DIR="$HOME/tui/quartz-blog/content"
 

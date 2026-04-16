@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: null,
     locale: "zh-TW",
     baseUrl: "gott-ist-tot.github.io",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "_*"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
