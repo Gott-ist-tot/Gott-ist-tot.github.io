@@ -1,32 +1,84 @@
 @use "./base.scss";
 
-// === The Late-Night Desk ===
-// Warm, crafted, precise. Like a well-lit workbench at midnight.
+// === The Late-Night Desk v2 ===
+// Warm, crafted, precise. A golden retriever at your feet.
+// Typography: Playfair Display (display) + Source Serif 4 (body) + JetBrains Mono (labels)
 
-// Subtle grain texture on the background
+// Subtle grain texture
 body {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
 }
 
-// Refined article typography
+// ── Hero Profile (Homepage) ──────────────────────────────
+.hero-profile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.hero-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 3px solid var(--lightgray);
+  flex-shrink: 0;
+  transition: transform 0.4s ease, border-color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05) rotate(2deg);
+    border-color: var(--secondary);
+  }
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-tagline {
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dark);
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin: 0;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+// ── Article Typography ───────────────────────────────────
 .center {
   article {
-    // Generous line height for essay reading
     p {
       line-height: 1.85;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.008em;
       margin-bottom: 1.4em;
     }
 
-    // First paragraph: subtle lead-in
     > p:first-of-type {
-      font-size: 1.08em;
+      font-size: 1.06em;
       color: var(--dark);
     }
 
-    // Horizontal rules as elegant scene breaks
+    // Scene break lines
     hr {
       border: none;
       height: 1px;
@@ -38,35 +90,34 @@ body {
         transparent 100%
       );
       margin: 2.8em auto;
-      max-width: 200px;
-      opacity: 0.5;
+      max-width: 180px;
+      opacity: 0.4;
     }
 
-    // Bold text with accent warmth
     strong {
       color: var(--secondary);
       font-weight: 600;
     }
 
-    // Italics with subtle styling
     em {
       font-style: italic;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
     }
 
-    // Blockquotes as pull quotes
     blockquote {
       border-left: 2px solid var(--secondary);
       padding-left: 1.5em;
       margin: 2em 0;
       font-style: italic;
-      opacity: 0.9;
+      opacity: 0.85;
     }
   }
 }
 
-// Page title (Henry Kuo in sidebar) — warm accent on hover
+// ── Page Title (sidebar) ─────────────────────────────────
 .page-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
   transition: color 0.3s ease;
 
   &:hover {
@@ -74,30 +125,49 @@ body {
   }
 }
 
-// Article title — refined
+// ── Article Title ────────────────────────────────────────
 article > h1,
 .article-title {
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.3em;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 0.2em;
+  font-weight: 700;
 }
 
-// Content meta (date, reading time) — quieter
+// ── Content Meta (date, reading time) — editorial mono ───
 .content-meta {
-  opacity: 0.6;
-  font-size: 0.88em;
-  letter-spacing: 0.03em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 1.8em;
 }
 
-// Tag pills — refined
+// ── Tag pills ────────────────────────────────────────────
 .tag-container {
   margin-top: 3em;
   padding-top: 1.5em;
   border-top: 1px solid var(--lightgray);
 }
 
-// Explorer items — subtle hover
+a.internal.tag-link {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3em 0.7em;
+  border: 1px solid var(--lightgray);
+  border-radius: 3px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+}
+
+// ── Explorer items ───────────────────────────────────────
 .explorer ul li a {
   transition: color 0.2s ease, padding-left 0.2s ease;
 
@@ -107,25 +177,28 @@ article > h1,
   }
 }
 
-// Footer — quieter
+// ── Footer — whisper quiet ───────────────────────────────
 footer {
-  opacity: 0.5;
+  opacity: 0.4;
   transition: opacity 0.3s ease;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
-// Smooth page transitions
+// ── Page entrance ────────────────────────────────────────
 article {
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -133,9 +206,9 @@ article {
   }
 }
 
-// Scrollbar styling (webkit)
+// ── Scrollbar ────────────────────────────────────────────
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -151,8 +224,31 @@ article {
   }
 }
 
-// Selection color
+// ── Selection ────────────────────────────────────────────
 ::selection {
   background: var(--secondary);
   color: var(--light);
+}
+
+// ── Links — subtle underline on hover ────────────────────
+article a {
+  text-decoration: none;
+  color: var(--secondary);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-bottom-color: var(--secondary);
+  }
+}
+
+// ── Reduced motion ───────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  article {
+    animation: none;
+  }
+
+  .hero-avatar {
+    transition: none;
+  }
 }
