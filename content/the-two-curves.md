@@ -10,8 +10,6 @@ tags:
   - personal-essay
 ---
 
-# The Two Curves
-
 Have you ever handed something off to someone else for six months, then one day had to do it yourself again — and realized your hands had forgotten how?
 
 That morning I was staring at a failing point the AI had flagged. I froze. Was this an RTL bug or a bench issue? The AI was confident: RTL bug. But something in my gut said bench. I took a sip of coffee that somehow had no taste, and opened the waveform manually to check.
