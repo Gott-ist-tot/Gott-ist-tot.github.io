@@ -14,6 +14,7 @@ echo "==> 同步 Obsidian 04_BLOG → content/"
 rsync -av --delete \
   --exclude='.obsidian' \
   --exclude='.trash' \
+  --exclude='_*' \
   "$BLOG_SOURCE/" "$CONTENT_DIR/"
 
 # 同步 Obsidian 附件（圖片等）
